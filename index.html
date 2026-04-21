@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aswin PB | Portfolio</title>
+
+<!-- AOS Animation -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#ffffff;
+  --text:#111;
+  --card:#f4f4f4;
+  --accent:#0077ff;
+}
+
+body.dark{
+  --bg:#0f172a;
+  --text:#e2e8f0;
+  --card:#1e293b;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
+body{font-family:Segoe UI, sans-serif;background:var(--bg);color:var(--text);transition:0.3s;}
+
+header{
+  text-align:center;
+  padding:80px 20px;
+}
+
+h1{font-size:2.8rem;}
+
+#typing{
+  color:var(--accent);
+  font-weight:bold;
+  margin-top:10px;
+}
+
+nav{
+  position:sticky;top:0;
+  background:var(--card);
+  padding:10px;
+  text-align:center;
+}
+nav a{margin:0 15px;text-decoration:none;color:var(--text);font-weight:bold;}
+
+section{padding:60px 20px;max-width:1000px;margin:auto;}
+
+.card{
+  background:var(--card);
+  padding:20px;
+  border-radius:10px;
+  transition:0.3s;
+}
+.card:hover{transform:translateY(-8px) scale(1.02);}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+
+button{
+  padding:8px 15px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  cursor:pointer;
+  border-radius:5px;
+}
+
+footer{text-align:center;padding:20px;}
+
+.icon{margin-right:8px;color:var(--accent);} 
+</style>
+</head>
+
+<body>
+
+<header data-aos="fade-down">
+  <h1>ASWIN PB</h1>
+  <p id="typing"></p>
+  <br>
+  <button onclick="toggleDark()">Toggle Dark Mode</button>
+</header>
+
+<nav>
+  <a href="#about">About</a>
+  <a href="#skills">Skills</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="about" data-aos="fade-up">
+  <h2>About Me</h2>
+  <p>I am an enthusiastic BCA graduate currently pursuing MCA, aiming to build a strong career in computer science. I enjoy working with modern technologies and contributing to meaningful projects.</p>
+</section>
+
+<section id="skills" data-aos="fade-up">
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card"><h3><i class="fa-solid fa-code icon"></i>Programming</h3><p>Python, C, PHP, JavaScript</p></div>
+    <div class="card"><h3><i class="fa-solid fa-globe icon"></i>Web</h3><p>HTML, CSS, Django, WordPress</p></div>
+    <div class="card"><h3><i class="fa-solid fa-database icon"></i>Database</h3><p>MySQL, SQLite</p></div>
+    <div class="card"><h3><i class="fa-solid fa-layer-group icon"></i>Frameworks</h3><p>Django, Flask</p></div>
+  </div>
+</section>
+
+<section id="projects" data-aos="fade-up">
+  <h2>Projects</h2>
+  <div class="grid">
+
+    <div class="card" data-aos="zoom-in">
+      <h3>Smart Video Surveillance</h3>
+      <p>Vision Transformer + YOLOv8 system for detecting intrusion and abnormal activities.</p>
+    </div>
+
+    <div class="card" data-aos="zoom-in">
+      <h3>ASHA Worker Management System</h3>
+      <p>Django-based health data system with MySQL and AJAX integration.</p>
+    </div>
+
+    <div class="card" data-aos="zoom-in">
+      <h3>Air Quality Prediction</h3>
+      <p>Machine learning system to predict pollution levels using historical data.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" data-aos="fade-up">
+  <h2>Contact</h2>
+  <p><i class="fa-solid fa-phone icon"></i>8589007204</p>
+  <p><i class="fa-solid fa-envelope icon"></i>aswinpb100@gmail.com</p>
+  <p><i class="fa-brands fa-linkedin icon"></i>linkedin.com/in/aswin-pb-281a3a276</p>
+</section>
+
+<footer>
+  <p>© 2026 Aswin PB</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({duration:1000});
+
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+// Typing Animation
+const text = ["Python Developer","Django Developer","MCA Student"];
+let i=0, j=0, current="", isDeleting=false;
+
+function type(){
+  current = text[i];
+  if(isDeleting){
+    document.getElementById("typing").textContent = current.substring(0,j--);
+  } else {
+    document.getElementById("typing").textContent = current.substring(0,j++);
+  }
+
+  if(!isDeleting && j === current.length+1){
+    isDeleting = true;
+    setTimeout(type,1000);
+    return;
+  }
+
+  if(isDeleting && j === 0){
+    isDeleting = false;
+    i = (i+1)%text.length;
+  }
+
+  setTimeout(type, isDeleting?50:100);
+}
+
+type();
+</script>
+
+</body>
+</html>
