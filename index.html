@@ -26,7 +26,31 @@ body.dark{
 }
 
 *{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth;}
-body{font-family:Segoe UI, sans-serif;background:var(--bg);color:var(--text);transition:0.3s;}
+body{
+  font-family:Segoe UI, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
+}
+
+/* Floating Theme Toggle */
+.theme-toggle{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:var(--card);
+  color:var(--text);
+  padding:12px;
+  border-radius:50%;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  z-index:1000;
+  transition:0.3s;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.1);
+}
 
 header{
   text-align:center;
@@ -47,9 +71,18 @@ nav{
   padding:10px;
   text-align:center;
 }
-nav a{margin:0 15px;text-decoration:none;color:var(--text);font-weight:bold;}
+nav a{
+  margin:0 15px;
+  text-decoration:none;
+  color:var(--text);
+  font-weight:bold;
+}
 
-section{padding:60px 20px;max-width:1000px;margin:auto;}
+section{
+  padding:60px 20px;
+  max-width:1000px;
+  margin:auto;
+}
 
 .card{
   background:var(--card);
@@ -57,32 +90,38 @@ section{padding:60px 20px;max-width:1000px;margin:auto;}
   border-radius:10px;
   transition:0.3s;
 }
-.card:hover{transform:translateY(-8px) scale(1.02);}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
-
-button{
-  padding:8px 15px;
-  border:none;
-  background:var(--accent);
-  color:#fff;
-  cursor:pointer;
-  border-radius:5px;
+.card:hover{
+  transform:translateY(-8px) scale(1.02);
 }
 
-footer{text-align:center;padding:20px;}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
 
-.icon{margin-right:8px;color:var(--accent);} 
+footer{
+  text-align:center;
+  padding:20px;
+}
+
+.icon{
+  margin-right:8px;
+  color:var(--accent);
+}
 </style>
 </head>
 
 <body>
 
+<!-- Floating Toggle Button -->
+<div class="theme-toggle" onclick="toggleDark()">
+  <i class="fa-solid fa-moon" id="themeIcon"></i>
+</div>
+
 <header data-aos="fade-down">
   <h1>ASWIN PB</h1>
   <p id="typing"></p>
-  <br>
-  <button onclick="toggleDark()">Toggle Dark Mode</button>
 </header>
 
 <nav>
@@ -131,7 +170,6 @@ footer{text-align:center;padding:20px;}
 
 <section id="contact" data-aos="fade-up">
   <h2>Contact</h2>
-  <!--<p><i class="fa-solid fa-phone icon"></i>8589007204</p>-->
   <p><i class="fa-solid fa-envelope icon"></i>aswinpb100@gmail.com</p>
   <p><i class="fa-brands fa-linkedin icon"></i>linkedin.com/in/aswin-pb-281a3a276</p>
 </section>
@@ -144,11 +182,22 @@ footer{text-align:center;padding:20px;}
 <script>
 AOS.init({duration:1000});
 
+/* Dark Mode Toggle */
 function toggleDark(){
   document.body.classList.toggle("dark");
+
+  const icon = document.getElementById("themeIcon");
+
+  if(document.body.classList.contains("dark")){
+    icon.classList.remove("fa-moon");
+    icon.classList.add("fa-sun");
+  } else {
+    icon.classList.remove("fa-sun");
+    icon.classList.add("fa-moon");
+  }
 }
 
-// Typing Animation
+/* Typing Animation */
 const text = ["Python Developer","Django Developer","MCA Student"];
 let i=0, j=0, current="", isDeleting=false;
 
